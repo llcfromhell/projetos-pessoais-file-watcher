@@ -17,7 +17,6 @@ public class AnalyzedData {
 	private int amountOfClients;
 	private int amountOfSalesman;
 	private Sale mostExpensiveSale;
-
 	private Sale worstSalesEver;
 
 	public AnalyzedData from(String flatFile) {
@@ -45,13 +44,26 @@ public class AnalyzedData {
 		return worstSalesEver == null ? null : worstSalesEver.getSalesman();
 	}
 	
+	public int getAmountOfClients() {
+		return amountOfClients;
+	}
+
+	public int getAmountOfSalesman() {
+		return amountOfSalesman;
+	}
+
+	public Sale getMostExpensiveSale() {
+		return mostExpensiveSale;
+	}
+
+	public Sale getWorstSalesEver() {
+		return worstSalesEver;
+	}
 
 	@Override
 	public String toString() {
 		return "AnalyzedData [amountOfClients=" + amountOfClients + ", amountOfSalesman=" + amountOfSalesman
 				+ ", MostExpensiveSale=" + mostExpensiveSale + ", nameWorstSalesmanEver=" + getNameWorstSalesmanEver() + "]";
 	}
-
-
 
 }

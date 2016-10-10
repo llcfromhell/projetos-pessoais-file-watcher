@@ -12,7 +12,7 @@ public class Sale {
 
 	public Sale(String id, Set<Item> itens, String salesman) {
 		this.id = id;
-		itens.addAll(itens);
+		this.itens.addAll(itens);
 		this.salesman = salesman;
 	}
 
@@ -55,7 +55,7 @@ public class Sale {
 
 	public double getTotal() {
 		
-		return itens.stream().mapToDouble(item -> item.getPrice()).sum();
+		return itens.stream().mapToDouble(item -> (item.getPrice()*item.getQtd())).sum();
 		
 	}
 
