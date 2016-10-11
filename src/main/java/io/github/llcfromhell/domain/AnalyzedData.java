@@ -1,49 +1,27 @@
 package io.github.llcfromhell.domain;
 
-import java.util.Optional;
-
 public class AnalyzedData {
 
-	public String getFlatFileName() {
-		return flatFileName;
-	}
-
-	public String getFlatFileNameWithoutExtension() {
-		return flatFileName == null ? null : flatFileName.replaceFirst("[.][^.]+$", "");
-	}
+	
 
 	private String flatFileName;
 
 	private int amountOfClients;
 	private int amountOfSalesman;
 	private Sale mostExpensiveSale;
-	private Sale worstSalesEver;
+	private String worstSalesmanEver;
 
-	public AnalyzedData from(String flatFile) {
-		this.flatFileName = flatFile;
-		return this;
-	}
-
-	public void setAmountOfClients(int amountOfClients) {
+	public AnalyzedData(String flatFileName, int amountOfClients, int amountOfSalesman, Sale mostExpensiveSale,
+			String worstSalesmanEver) {
+		
+		this.flatFileName = flatFileName;
 		this.amountOfClients = amountOfClients;
-	}
-
-	public void setAmountOfSalesman(int amountOfSalesman) {
 		this.amountOfSalesman = amountOfSalesman;
+		this.mostExpensiveSale = mostExpensiveSale;
+		this.worstSalesmanEver = worstSalesmanEver;
+		
 	}
 
-	public void setMostExpensiveSale(Optional<Sale> mostExpensiveSale) {
-		this.mostExpensiveSale = mostExpensiveSale.orElse(null);
-	}
-
-	public void setWorstSalesEver(Optional<Sale> worstSalesEver) {
-		this.worstSalesEver = worstSalesEver.orElse(null);
-	}
-	
-	private String getNameWorstSalesmanEver() {
-		return worstSalesEver == null ? null : worstSalesEver.getSalesman();
-	}
-	
 	public int getAmountOfClients() {
 		return amountOfClients;
 	}
@@ -56,14 +34,23 @@ public class AnalyzedData {
 		return mostExpensiveSale;
 	}
 
-	public Sale getWorstSalesEver() {
-		return worstSalesEver;
+	public String getFlatFileName() {
+		return flatFileName;
 	}
 
+	public String getFlatFileNameWithoutExtension() {
+		return flatFileName == null ? null : flatFileName.replaceFirst("[.][^.]+$", "");
+	}
+
+	public String getWorstSalesmanEver() {
+		return worstSalesmanEver;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "AnalyzedData [amountOfClients=" + amountOfClients + ", amountOfSalesman=" + amountOfSalesman
-				+ ", MostExpensiveSale=" + mostExpensiveSale + ", nameWorstSalesmanEver=" + getNameWorstSalesmanEver() + "]";
+				+ ", MostExpensiveSale=" + mostExpensiveSale + ", worstSalesmanEver=" + worstSalesmanEver + "]";
 	}
 
 }

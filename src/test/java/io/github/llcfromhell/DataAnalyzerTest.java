@@ -50,7 +50,41 @@ public class DataAnalyzerTest {
 		Assert.assertEquals( 1, analyzedData.getAmountOfSalesman() );
 		
 		Assert.assertEquals( 1500, analyzedData.getMostExpensiveSale().getTotal(), 0.001 );
-		Assert.assertEquals( 1000, analyzedData.getWorstSalesEver().getTotal(), 0.001 );
+	}
+	
+	@Test
+	public void testAnalyzeWorstSalesmenEver() {
+		
+		Data data = new Data();
+		data.addCustomers(Arrays.asList(new Customer("xxx", "YYY", "aaa")));
+		
+		data.addSales(Arrays.asList(
+				new Sale("1", 
+						new HashSet<Item>(Arrays.asList(new Item("1", 10, 100))),
+						"ted"),
+				new Sale("2", 
+						new HashSet<Item>(Arrays.asList(new Item("1", 10, 150))),
+						"marshall"),
+				new Sale("3", 
+						new HashSet<Item>(Arrays.asList(new Item("1", 10, 100))),
+						"ted"),
+				new Sale("4", 
+						new HashSet<Item>(Arrays.asList(new Item("1", 1, 100))),
+						"marshall"),
+				new Sale("5", 
+						new HashSet<Item>(Arrays.asList(new Item("1", 6, 666))),
+						"robin")));
+		
+		data.addSalesmen(Arrays.asList(new Salesman("12345678900", "barney", 666)));
+		
+		DataAnalyzer dataAnalyzer = new DataAnalyzer();
+		
+		dataAnalyzer.analyze(data);
+		
+		AnalyzedData analyzedData = dataAnalyzer.getListAnalyzedData().get(0); 
+		
+		// verifica as respostas dos dados 
+		Assert.assertEquals( "marshall", analyzedData.getWorstSalesmanEver());
 		
 	}
 	
